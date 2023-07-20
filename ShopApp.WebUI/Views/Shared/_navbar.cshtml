@@ -1,0 +1,62 @@
+﻿  
+  <div class="navbar bg-primary navbar-dark navbar-expand-sm">
+      <div class="container">
+          <a href="/" class="navbar-brand">ShopApp</a>
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a href="/products" class="nav-link">Məhsullar</a>
+              </li>
+              @if (User.Identity.IsAuthenticated)
+              {
+                  <li class="nav-item">
+                      <a href="/cart" class="nav-link">Səbət</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/orders" class="nav-link">Sifarişlər</a>
+                  </li>
+
+                  @if (User.IsInRole("Admin"))
+                  {
+                      <li class="nav-item">
+                          <a href="/admin/products" class="nav-link">Admin Products</a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a href="/admin/categories" class="nav-link">Admin Categories</a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a href="/admin/role/list" class="nav-link">Roles</a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a href="/admin/user/list" class="nav-link">Users</a>
+                      </li>
+                  }
+              }
+          </ul>
+
+          <ul class="navbar-nav ml-auto">
+
+              @if (User.Identity.IsAuthenticated)
+              {
+                  <li class="nav-item">
+                      <a href="/account/manage" class="nav-link">@User.Identity.Name</a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a href="/account/logout" class="nav-link">Çıxış</a>
+                  </li>
+              }
+              else
+              {
+                  <li class="nav-item">
+                      <a href="/account/login" class="nav-link">Giriş</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/account/register" class="nav-link">Qeydiyyat</a>
+                  </li>
+              }
+          </ul>
+      </div>
+    </div>

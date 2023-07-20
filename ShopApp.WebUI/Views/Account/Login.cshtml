@@ -1,0 +1,46 @@
+﻿@model LoginModel
+
+<h1 class="h3">Giriş</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post" asp-controller="Account" asp-action="Login">
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+            <div class="text-danger" asp-validation-summary="All"></div>
+
+            @*<div class="form-group row">
+            <label asp-for="UserName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="UserName">
+                <span class="text-danger" asp-validation-for="UserName"></span>
+            </div>
+        </div>*@
+
+
+            <div class="form-group row">
+                <label asp-for="Email" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Email">
+                    <span class="text-danger" asp-validation-for="Email"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Password" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Password">
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="submit" class="btn btn-primary">Giriş</button>
+                    <a href="/account/forgotpassword" class="btn-link">Şifrəmi unutdum</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

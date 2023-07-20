@@ -1,0 +1,59 @@
+﻿@model List<OrderListModel>
+
+<h1>Sifarişlər</h1>
+<hr />
+
+    @foreach(var order in Model)
+    {
+        <table class="table table-bordered table-sm mb-3">
+            <thead class="bg-primary">
+                <tr>
+                    <td colspan="2">Sifariş Nömrəsi: #@order.OrderNumber</td>
+                    <th>Qiymət</th>
+                    <th>Say</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var orderItem in order.OrderItems)
+                {
+                    <tr>
+                        <td> <img src="~/img/@orderItem.ImageUrl" width="80"/> </td>
+                        <td>
+                            @orderItem.Name
+                        </td>
+                        <td>@orderItem.Price AZN</td>
+                        <td>@orderItem.Quantity Ədəd</td>
+                    </tr>
+                }
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="2">Müştəri Adı və Soyadı</td>
+                    <td>@order.FirstName  @order.LastName</td>
+                    <td rowspan="6">Toplam:@order.TotalPrice().ToString() AZN</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Ünvan: </td>
+                    <td>@order.Address</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Email: </td>
+                    <td>@order.Email</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Telefon: </td>
+                    <td>@order.Phone</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Sifariş Vəziyyəti: </td>
+                    <td>@order.OrderState</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Ödəniş Növü: </td>
+                    <td>@order.PaymentType</td>
+                </tr>
+            </tfoot>
+        </table>
+    }

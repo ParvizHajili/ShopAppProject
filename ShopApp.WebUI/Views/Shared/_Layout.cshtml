@@ -1,0 +1,44 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Newtonsoft.Json
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="/modules/bootstrap/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    @RenderSection("Css",false)
+    <link rel="stylesheet" href="~/css/style.css" />
+
+    <title>ShopApp</title>
+</head>
+<body>
+    @await Html.PartialAsync("_navbar")
+    @RenderSection("Header", false)
+
+    <main class="my-3">
+        <div class="container">
+            <div class="container">
+
+                @if (TempData["message"] != null)
+                {
+                    <partial name="_ResultMessage" model="@(TempData.Get<AlertMessage>("message"))" />
+                }
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-5 bg-dark text-white text-center">
+        Shop App 2021
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    @RenderSection("Scripts", false)
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+</body>
+</html>

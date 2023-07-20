@@ -1,0 +1,102 @@
+﻿@model OrderModel
+
+<h1>Ödəniş Bölməsi</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <h4 class="mb-3">Əlaqə Məlumatları</h4>
+        <form method="post" asp-controller="Cart" asp-action="Checkout">
+            <input type="hidden" name="cartId" value="0" />
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label asp-for="@Model.FirstName"></label>
+                    <input asp-for="@Model.FirstName" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="@Model.LastName"></label>
+                    <input asp-for="@Model.LastName" class="form-control" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="@Model.Address">Ünvan</label>
+                <textarea asp-for="@Model.Address" class="form-control"></textarea>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label asp-for="@Model.City">Şəhər</label>
+                    <input asp-for="@Model.City" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="@Model.Phone">Əlaqə Nömrəsi</label>
+                    <input asp-for="@Model.Phone" class="form-control" placeholder="+994XX XXX XX XX" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="@Model.Email">Email</label>
+                    <input asp-for="@Model.Email" class="form-control" />
+                </div>
+            </div>
+
+            <h4 class="Ödəniş Məlumatları"></h4>
+            <hr class="mb-3" />
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label asp-for="@Model.CardName"></label>
+                    <input asp-for="@Model.CardName" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="@Model.CardNumber"></label>
+                    <input asp-for="@Model.CardNumber" class="form-control" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label asp-for="@Model.ExpirationMonth"></label>
+                    <input asp-for="@Model.ExpirationMonth" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="@Model.ExpirationYear"></label>
+                    <input asp-for="@Model.ExpirationYear" class="form-control"  />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="@Model.CVV"></label>
+                    <input asp-for="@Model.CVV" class="form-control" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Təsdiqlə</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <div class="mb-3">
+            <span class="h4">Səbət Məlumatları</span>
+            <ul class="list-group mb-3">
+                @foreach (var item in Model.CartModel.CartItems)
+                {
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        <h6>@item.Name</h6>
+                    </div>
+                    <span class="text-muted">@item.Price.ToString("c")</span>
+                </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div>
+                            <h6>Məhsul Sayı</h6>
+                        </div>
+                        <span class="text-muted">@item.Quantity Ədəd</span>
+                    </li>
+                }
+
+                <li class="list-group-item d-flex justify-content-between">
+                    <span class="h4">Toplam</span>
+                    <strong>@Model.CartModel.TotalPrice().ToString("c") AZN</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
